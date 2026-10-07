@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ noticia.titulo }}</h1>
+    <p><small>Publicado em: {{ noticia.data_publicacao|date:"d/m/Y H:i" }}</small></p>
+    
+    <p>
+        <strong>Categoria:</strong> 
+        <a href="{% url 'categoria:detalhe' noticia.categoria.id %}" class="badge">
+            {{ noticia.categoria.nome }}
+        </a>
+    </p>
+    
+    <hr>
+    <p>{{ noticia.texto }}</p>
+    <hr>
+
+    <p>
+        <strong>Tags:</strong>
+        {% for tag in noticia.tags.all %}
+            <a href="{% url 'tag:detalhe' tag.id %}" class="tag-badge">#{{ tag.nome }}</a>
+        {% endfor %}
+    </p>
+
+    <br>
+    <a href="{% url 'noticias:lista' %}">← Voltar para Notícias</a>
+{% endblock %}

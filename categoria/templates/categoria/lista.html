@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Todas as Categorias</h1>
+    <a href="{% url 'categoria:criar' %}" class="btn-primary">+ Nova Categoria</a>
+    <ul>
+        {% for categoria in categorias %}
+            <li>
+                <a href="{% url 'categoria:detalhe' categoria.id %}">{{ categoria.nome }}</a>
+            </li>
+        {% empty %}
+            <li>Nenhuma categoria cadastrada.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

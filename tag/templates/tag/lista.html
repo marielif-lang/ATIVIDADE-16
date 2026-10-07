@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Todas as Tags</h1>
+    <a href="{% url 'tag:criar' %}" class="btn-primary">+ Nova Tag</a>
+    <div>
+        {% for tag in tags %}
+            <a href="{% url 'tag:detalhe' tag.id %}" class="tag-badge">#{{ tag.nome }}</a>
+        {% empty %}
+            <p>Nenhuma tag cadastrada.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

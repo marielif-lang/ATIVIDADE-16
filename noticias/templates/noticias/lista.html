@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Acervo de Notícias</h1>
+    <a href="{% url 'noticias:criar' %}" class="btn-primary">+ Nova Notícia</a>
+    
+    {% for noticia in noticias %}
+        <div class="card">
+            <h3><a href="{% url 'noticias:detalhe' noticia.id %}">{{ noticia.titulo }}</a></h3>
+            <p>Categoria: <a href="{% url 'categoria:detalhe' noticia.categoria.id %}" class="badge">{{ noticia.categoria.nome }}</a></p>
+        </div>
+    {% empty %}
+        <p>Nenhuma notícia cadastrada.</p>
+    {% endfor %}
+{% endblock %}

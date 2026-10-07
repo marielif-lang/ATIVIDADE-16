@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Notícias da Categoria: {{ categoria.nome }}</h1>
+    
+    {% for noticia in noticias %}
+        <div class="card">
+            <h3><a href="{% url 'noticias:detalhe' noticia.id %}">{{ noticia.titulo }}</a></h3>
+        </div>
+    {% empty %}
+        <p>Nenhuma notícia vinculada a esta categoria.</p>
+    {% endfor %}
+    
+    <a href="{% url 'categoria:lista' %}">← Voltar para Categorias</a>
+{% endblock %}
